@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>v-if If Statements</title>
+	<meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<style>
+		.card {
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			transition: 0.3s;
+			width: 40%;
+		}
+
+		.card:hover {
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+		}
+
+		.container {
+			padding: 2px 16px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="app">
+		<span v-if="profile">
+			<div class="card">
+				<img v-if="profile.imageUrl && profile.imageAlt" img v-bind:src="profile.imageUrl" v-bind:alt="profile.imageAlt" style="width:100%">
+				<img v-else="defaultImageUrl && defaultImageAlt"v-bind:src="defaultImageUrl" v-bind:alt="defaultImageAlt" style="width:100%">
+				<div class="container">
+					<h4 v-if="profile.fname || profile.lname"><b>Profile of {{profile.fname}} {{profile.lname}}</b></h4>
+					<h4 v-else>No name is availabe</h4>
+					<p v-if="profile.desc">{{profile.desc}}</p>
+					<p v-else>No Job title or description available</p>
+					<p v-if="profile.bio">{{profile.bio}}</p>
+					<p v-else>No bio available</p>
+				</div>
+			</div>
+
+		</span>
+		<span>
+
+		</span>
+		<span v-else>
+			No Profile Data found.
+		</span>
+	</div>
+
+	<script>
+		var app = new Vue({
+			el: '#app',
+
+			data: {
+				defaultImageUrl: "https://www.w3schools.com/howto/img_avatar.png",
+				defaultImageAlt: "Avatar",
+				profile: {
+					fname: "Mahsa",
+					lname: "K.Farad",
+					desc: "Web Developer",
+					bio: " I am a full-stack web developer. I am currently finishing the Web Development Post-graduate program at Humber College. I am skilled in Database Design using Microsoft SQL and my SQL, Creating REST full API using C# .Net, and developing the website's front end using HTML, CSS, Javascript, React and Angular. I am more interested in working in front-end development using javascript frameworks like Angular and React.I am a passionate learner and like challenges and solving problems. ",
+					 imageUrl: "https://mahsa-kf.ca/img/Mahsa.jpg",
+					 imageAlt: "profile picture"
+				}
+			}
+
+		});
+	</script>
+
+	<!--
+		//step 1: Read Code Above
+		//step 2: Does the profile show up?
+		
+		v-if="boolean_expression"
+		v-else-if="boolean_expression"
+		v-else
+		
+		
+		You can code an if, else if, else statement into your render using the v-if, v-else-if, v-else.
+		Just like in regular programming, v-else has no condition
+		
+		Notice how the "profile" object is null. Reminder that null is Falsey in the boolean context.
+		
+		ASYNCHRONOUS LEARNING EXERCISE
+		1. Use the profile object to store information about yourself {fname, lname, desc, bio, pic}
+		2. Create a figure, figcaption, and image markup which acts as a description for yourself
+			(Something like this https://www.w3schools.com/howto/howto_css_cards.asp)
+		3. Write conditionals if information is missing (i.e. 'no bio available' if bio is blank, generic image if no pic is found)
+		-->
+</body>
+
+</html>
